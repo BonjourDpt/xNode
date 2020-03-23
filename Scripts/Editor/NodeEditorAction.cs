@@ -14,6 +14,8 @@ namespace XNodeEditor {
 
         public static XNode.Node[] copyBuffer = null;
 
+        public XNode.NodePort AutoConnectOutput => autoConnectOutput;
+
         private bool IsDraggingPort { get { return draggedOutput != null; } }
         private bool IsHoveringPort { get { return hoveredPort != null; } }
         private bool IsHoveringNode { get { return hoveredNode != null; } }
