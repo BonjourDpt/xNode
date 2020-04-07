@@ -197,7 +197,7 @@ namespace XNodeEditor {
                             currentActivity = NodeActivity.HoldGrid;
                             if (!e.control && !e.shift) {
                                 selectedReroutes.Clear();
-                                Selection.activeObject = null;
+                                Selection.activeObject = graph;
                             }
                         }
                     }
