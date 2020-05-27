@@ -80,20 +80,6 @@ namespace XNodeEditor {
             if (graphEditor != null && NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
         }
 
-        [InitializeOnLoadMethod]
-        private static void OnLoad() {
-            Selection.selectionChanged -= OnSelectionChanged;
-            Selection.selectionChanged += OnSelectionChanged;
-        }
-
-        /// <summary> Handle Selection Change events</summary>
-        private static void OnSelectionChanged() {
-            XNode.NodeGraph nodeGraph = Selection.activeObject as XNode.NodeGraph;
-            if (nodeGraph && !AssetDatabase.Contains(nodeGraph)) {
-                Open(nodeGraph);
-            }
-        }
-
         /// <summary> Make sure the graph editor is assigned and to the right object </summary>
         private void ValidateGraphEditor() {
             NodeGraphEditor graphEditor = NodeGraphEditor.GetEditor(graph, this);
