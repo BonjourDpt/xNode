@@ -77,7 +77,16 @@ namespace XNodeEditor {
         void OnFocus() {
             current = this;
             ValidateGraphEditor();
-            if (graphEditor != null && NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
+            if (graphEditor != null) {
+                graphEditor.OnWindowFocus();
+                if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
+            }
+            
+            dragThreshold = Math.Max(1f, Screen.width / 1000f);
+        }
+        
+        void OnLostFocus() {
+            if (graphEditor != null) graphEditor.OnWindowFocusLost();
         }
 
         /// <summary> Make sure the graph editor is assigned and to the right object </summary>
