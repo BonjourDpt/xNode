@@ -168,6 +168,7 @@ namespace XNodeEditor {
             Undo.RecordObject(target, "Create Node");
             XNode.Node node = target.AddNode(type);
             Undo.RegisterCreatedObjectUndo(node, "Create Node");
+            node.hideFlags = HideFlags.HideInHierarchy;
             node.position = position;
             if (node.name == null || node.name.Trim() == "") node.name = NodeEditorUtilities.NodeDefaultName(type);
             if (!string.IsNullOrEmpty(AssetDatabase.GetAssetPath(target))) AssetDatabase.AddObjectToAsset(node, target);
@@ -181,6 +182,7 @@ namespace XNodeEditor {
             Undo.RecordObject(target, "Duplicate Node");
             XNode.Node node = target.CopyNode(original);
             Undo.RegisterCreatedObjectUndo(node, "Duplicate Node");
+            node.hideFlags = HideFlags.HideInHierarchy;
             node.name = original.name;
             AssetDatabase.AddObjectToAsset(node, target);
             if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
